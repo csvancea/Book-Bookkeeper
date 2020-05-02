@@ -1,5 +1,5 @@
-CXXFLAGS = -c -Wall -Wextra -std=c++17 -I./include
-CXXFLAGS += -g
+CXXFLAGS = -c -Wall -Wextra -std=c++17 -DFMT_HEADER_ONLY -I./include
+CXXFLAGS += -g -DENABLE_LOGGING
 # CXXFLAGS += -O2 -march=native -mtune=native
 LDFLAGS =
 
@@ -10,8 +10,8 @@ OUT_DIR = build/linux
 OBJ_DIR = $(OUT_DIR)/obj
 OUT_EXE = $(OUT_DIR)/$(EXE_NAME)
 
-SRC_FILES := $(shell find $(SRC_DIR)/ -type f -name '*.cpp')
-OBJ_FILES := $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC_FILES))
+SRC_FILES = $(shell find $(SRC_DIR)/ -type f -name '*.cpp')
+OBJ_FILES = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC_FILES))
 
 
 .PHONY: build
