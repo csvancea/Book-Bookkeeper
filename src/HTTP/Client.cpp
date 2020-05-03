@@ -57,9 +57,10 @@ ECode HTTPClient::Receive(SOCKET sockfd, HTTPResponse& response)
     int recv_bytes;
 
     response.Reset();
+
     while (1) {
         recv_bytes = recv(sockfd, buffer, sizeof(buffer) - 1, 0);
-        if (recv_bytes == -1) {
+        if (recv_bytes == SOCKET_ERROR) {
             return ECode::SOCKET_RECV;
         }
 
