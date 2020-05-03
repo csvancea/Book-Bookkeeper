@@ -53,7 +53,7 @@ ECode HTTPClient::Send(SOCKET sockfd, const std::string& request)
 
 ECode HTTPClient::Receive(SOCKET sockfd, HTTPResponse& response)
 {
-    char buffer[128];
+    char buffer[256];
     int recv_bytes;
 
     response.Reset();
@@ -62,12 +62,13 @@ ECode HTTPClient::Receive(SOCKET sockfd, HTTPResponse& response)
         if (recv_bytes == -1) {
             return ECode::SOCKET_RECV;
         }
-        else if (recv_bytes == 0) {
-            break;
-        }
 
         buffer[recv_bytes] = 0;
         response._raw.append(buffer);
+
+        if (recv_bytes != sizeof(buffer) - 1) {
+            break;
+        }
     }
 
     return ParseResponse(response);
@@ -108,7 +109,7 @@ ECode HTTPClient::Request(
         return err;
     }
 
-    LOG_MESSAGE("Raw response:\n{}", response.GetRaw());
+    LOG_DEBUG("Raw response:\n{}", response.GetRaw());
 
     // update cookies
     for (const auto kv : response.GetCookies()) {
