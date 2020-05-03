@@ -16,12 +16,30 @@
     <Filter Include="Header Files\fmt">
       <UniqueIdentifier>{34e002a1-c9a0-43ae-953e-11293de5c4be}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\HTTP">
+      <UniqueIdentifier>{15006641-4f23-4052-a2fa-99fca87c1de0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\HTTP">
+      <UniqueIdentifier>{cc8353d6-0d16-437f-84dc-af2992126bbc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Logger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HTTP\Client.cpp">
+      <Filter>Source Files\HTTP</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Errors.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HTTP\Response.cpp">
+      <Filter>Source Files\HTTP</Filter>
+    </ClCompile>
+    <ClCompile Include="src\App.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -64,6 +82,24 @@
     </ClInclude>
     <ClInclude Include="include\Logger.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\HTTP\Client.h">
+      <Filter>Header Files\HTTP</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Errors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\HTTP\System.h">
+      <Filter>Header Files\HTTP</Filter>
+    </ClInclude>
+    <ClInclude Include="include\HTTP\Response.h">
+      <Filter>Header Files\HTTP</Filter>
+    </ClInclude>
+    <ClInclude Include="include\App.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\HTTP\Map.h">
+      <Filter>Header Files\HTTP</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
