@@ -2,7 +2,7 @@
 
 namespace Utils
 {
-    std::vector<std::string> Split(std::string str, std::string delim)
+    std::vector<std::string> Split(const std::string& str, const std::string& delim)
     {
         size_t pos_start = 0, pos_end, delim_len = delim.length();
         std::string token;
