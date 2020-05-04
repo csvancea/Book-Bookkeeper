@@ -63,13 +63,12 @@ ECode HTTPClient::Receive(SOCKET sockfd, HTTPResponse& response)
         if (recv_bytes == SOCKET_ERROR) {
             return ECode::SOCKET_RECV;
         }
+        if (recv_bytes == 0) {
+            break;
+        }
 
         buffer[recv_bytes] = 0;
         response._raw.append(buffer);
-
-        if (recv_bytes != sizeof(buffer) - 1) {
-            break;
-        }
     }
 
     return ParseResponse(response);
@@ -273,6 +272,7 @@ ECode HTTPClient::ResolveHost()
 void HTTPClient::SetupSystemHeaders()
 {
     _system_headers["host"] = fmt::format("{}:{}", _unresolved_host, _port);
+    _system_headers["connection"] = "close";
 }
 
 ECode HTTPClient::GlobalStartup()
