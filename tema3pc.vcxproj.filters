@@ -22,6 +22,9 @@
     <Filter Include="Header Files\HTTP">
       <UniqueIdentifier>{cc8353d6-0d16-437f-84dc-af2992126bbc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\nlohmann">
+      <UniqueIdentifier>{7304e6e5-2c5e-4e24-8c84-61e5eee91365}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Main.cpp">
@@ -112,6 +115,9 @@
     </ClInclude>
     <ClInclude Include="include\SMap.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\nlohmann\json.hpp">
+      <Filter>Header Files\nlohmann</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

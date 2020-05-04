@@ -45,6 +45,7 @@
     <ClInclude Include="include\fmt\printf.h" />
     <ClInclude Include="include\fmt\ranges.h" />
     <ClInclude Include="include\HTTP\Client.h" />
+    <ClInclude Include="include\nlohmann\json.hpp" />
     <ClInclude Include="include\SMap.h" />
     <ClInclude Include="include\HTTP\Response.h" />
     <ClInclude Include="include\HTTP\System.h" />

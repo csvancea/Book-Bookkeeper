@@ -131,8 +131,6 @@ ECode HTTPClient::Request(
         return err;
     }
 
-    LOG_DEBUG("Raw response:\n{}", response.GetRaw());
-
     // update cookies
     for (const auto kv : response.GetCookies()) {
         _system_cookies[kv.first] = kv.second;
@@ -140,6 +138,11 @@ ECode HTTPClient::Request(
 
     Disconnect(sockfd);
     return ECode::OK;
+}
+
+void HTTPClient::ClearCookies()
+{
+    _system_cookies.clear();
 }
 
 std::string HTTPClient::FormatRequest(

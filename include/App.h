@@ -22,11 +22,16 @@ public:
 
 private:
 	ECode RegisterCommands();
+	void CMD_Register(const SMap& prompts);
+	void CMD_Login(const SMap& prompts);
+	void CMD_Logout(const SMap& prompts);
 	void CMD_Exit(const SMap& prompts);
 
 	bool _running;
 	HTTPClient _client;
 	CmdProc _cmd_proc;
+
+	bool _logged_in;
 
 	static constexpr char SERVER_HOST[] = "ec2-3-8-116-10.eu-west-2.compute.amazonaws.com";
 	static constexpr int  SERVER_PORT   = 8080;

@@ -32,6 +32,7 @@ public:
 	ECode Delete(HTTPResponse& response, const std::string& path, const SMap& query_params = SMap(),
 		const SMap& user_headers = SMap(), const SMap& user_cookies = SMap());
 
+	void ClearCookies();
 	ECode ResolveHost();
 
 private:
