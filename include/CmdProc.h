@@ -11,7 +11,7 @@
 class CmdProc
 {
 public:
-	using Callback = std::function<void(const SMap&)>;
+	using Callback = std::function<void(SMap&)>;
 
 	CmdProc() = default;
 	CmdProc(const CmdProc&) = delete;

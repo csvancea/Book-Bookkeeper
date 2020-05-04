@@ -22,16 +22,23 @@ public:
 
 private:
 	ECode RegisterCommands();
-	void CMD_Register(const SMap& prompts);
-	void CMD_Login(const SMap& prompts);
-	void CMD_Logout(const SMap& prompts);
-	void CMD_Exit(const SMap& prompts);
+	void CMD_Register(SMap& prompts);
+	void CMD_Login(SMap& prompts);
+	void CMD_Logout(SMap& prompts);
+	void CMD_Exit(SMap& prompts);
+
+	void CMD_Enter_Library(SMap& prompts);
+	void CMD_Get_Books(SMap& prompts);
+	void CMD_Get_Book(SMap& prompts);
+	void CMD_Add_Book(SMap& prompts);
+	void CMD_Delete_Book(SMap& prompts);
 
 	bool _running;
 	HTTPClient _client;
 	CmdProc _cmd_proc;
 
 	bool _logged_in;
+	SMap _user_headers;
 
 	static constexpr char SERVER_HOST[] = "ec2-3-8-116-10.eu-west-2.compute.amazonaws.com";
 	static constexpr int  SERVER_PORT   = 8080;
