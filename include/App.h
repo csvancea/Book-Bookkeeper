@@ -36,8 +36,6 @@ private:
 	bool _running;
 	HTTPClient _client;
 	CmdProc _cmd_proc;
-
-	bool _logged_in;
 	SMap _user_headers;
 
 	static constexpr char SERVER_HOST[] = "ec2-3-8-116-10.eu-west-2.compute.amazonaws.com";

@@ -12,7 +12,7 @@ Application& Application::GetInstance()
 }
 
 Application::Application() :
-	_running(true), _client(SERVER_HOST, SERVER_PORT), _logged_in(false)
+	_running(true), _client(SERVER_HOST, SERVER_PORT)
 {
 
 }
@@ -95,7 +95,7 @@ void Application::CMD_Register(SMap& prompts)
 			error = "--no error object--";
 		}
 
-		LOG_ERROR("Account NOT registered!");
+		LOG_ERROR("Can't register!");
 		LOG_ERROR("Response: {} {} - {}", response.GetCode(), response.GetStatus(), error);
 		// LOG_DEBUG("Raw HTTP response:\n{}", response.GetRaw());
 		return;
@@ -106,11 +106,6 @@ void Application::CMD_Register(SMap& prompts)
 
 void Application::CMD_Login(SMap& prompts)
 {
-	if (_logged_in) {
-		LOG_ERROR("You are already logged in!");
-		return;
-	}
-
 	json body(prompts);
 	HTTPResponse response;
 	ECode err;
@@ -127,7 +122,12 @@ void Application::CMD_Login(SMap& prompts)
 			error = json::parse(response.GetData())["error"];
 		}
 		catch (...) {
-			error = "--no error object--";
+			if (response.GetCode() == 204) {
+				error = "Already logged in.";
+			}
+			else {
+				error = "--no error object--";
+			}
 		}
 
 		LOG_ERROR("Can't log in!");
@@ -137,16 +137,10 @@ void Application::CMD_Login(SMap& prompts)
 	}
 
 	LOG_MESSAGE("Logged in!");
-	_logged_in = true;
 }
 
 void Application::CMD_Logout(SMap&)
 {
-	if (!_logged_in) {
-		LOG_ERROR("You are not logged in!");
-		return;
-	}
-
 	HTTPResponse response;
 	ECode err;
 
@@ -171,10 +165,9 @@ void Application::CMD_Logout(SMap&)
 		return;
 	}
 
-	LOG_MESSAGE("Logged out!");
-	_logged_in = false;
 	_user_headers.clear();
 	_client.ClearCookies();
+	LOG_MESSAGE("Logged out!");
 }
 
 void Application::CMD_Exit(SMap&)
