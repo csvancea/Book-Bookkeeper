@@ -19,8 +19,17 @@ public:
 	static ECode GlobalShutdown();
 
 	ECode Request(
-		const std::string& method, const std::string& path, const Map& query_params, const std::string& data,
-		const std::string& content_type, const Map& user_headers, const Map& user_cookies);
+		HTTPResponse& response, const std::string& method, const std::string& path,
+		const Map& query_params = Map(), const std::string& data = "", const std::string& content_type = "",
+		const Map& user_headers = Map(), const Map& user_cookies = Map());
+
+	ECode Get(HTTPResponse& response, const std::string& path, const Map& query_params = Map(),
+		const Map& user_headers = Map(), const Map& user_cookies = Map());
+	ECode Post(HTTPResponse& response, const std::string& path, const Map& query_params = Map(),
+		const std::string& data = "", const std::string& content_type = "",
+		const Map& user_headers = Map(), const Map& user_cookies = Map());
+	ECode Delete(HTTPResponse& response, const std::string& path, const Map& query_params = Map(),
+		const Map& user_headers = Map(), const Map& user_cookies = Map());
 
 	ECode ResolveHost();
 

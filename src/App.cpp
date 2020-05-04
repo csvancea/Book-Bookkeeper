@@ -34,8 +34,10 @@ ECode Application::Startup()
 
 ECode Application::Run()
 {
-	client.Request("POST", "/api/v1/auth/login", Map(), "username=student&password=student", "application/x-www-form-urlencoded", Map(), Map());
-	client.Request("GET", "/api/v1/weather/key", Map(), "", "", Map(), Map());
+	HTTPResponse response;
+
+	client.Post(response, "/api/v1/auth/login", Map(), "username=student&password=student", "application/x-www-form-urlencoded");
+	client.Get(response, "/api/v1/weather/key");
 	return ECode::OK;
 }
 

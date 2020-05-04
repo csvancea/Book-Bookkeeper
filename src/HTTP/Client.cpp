@@ -74,14 +74,36 @@ ECode HTTPClient::Receive(SOCKET sockfd, HTTPResponse& response)
     return ParseResponse(response);
 }
 
+ECode HTTPClient::Get(
+    HTTPResponse& response, const std::string& path, const Map& query_params,
+    const Map& user_headers, const Map& user_cookies)
+{
+    return Request(response, "GET", path, query_params, "", "", user_headers, user_cookies);
+}
+
+ECode HTTPClient::Post(
+    HTTPResponse& response, const std::string& path, const Map& query_params,
+    const std::string& data, const std::string& content_type,
+    const Map& user_headers, const Map& user_cookies)
+{
+    return Request(response, "POST", path, query_params, data, content_type, user_headers, user_cookies);
+}
+
+ECode HTTPClient::Delete(
+    HTTPResponse& response, const std::string& path, const Map& query_params,
+    const Map& user_headers, const Map& user_cookies)
+{
+    return Request(response, "DELETE", path, query_params, "", "", user_headers, user_cookies);
+}
+
 ECode HTTPClient::Request(
-    const std::string& method, const std::string& path, const Map& query_params, const std::string& data,
-    const std::string& content_type, const Map& user_headers, const Map& user_cookies)
+    HTTPResponse& response, const std::string& method, const std::string& path,
+    const Map& query_params, const std::string& data, const std::string& content_type,
+    const Map& user_headers, const Map& user_cookies)
 {
     ECode err;
     SOCKET sockfd;
     std::string request;
-    HTTPResponse response;
     Map merged_headers = user_headers;
     Map merged_cookies = user_cookies;
 
