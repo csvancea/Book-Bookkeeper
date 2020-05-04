@@ -11,7 +11,6 @@ enum class ECode
     HOST_ADDRINFO,
     HOST_NORESULT,
 
-    SOCKET_CREATE,
     SOCKET_CONNECT,
     SOCKET_SEND,
     SOCKET_RECV,

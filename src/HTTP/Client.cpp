@@ -15,11 +15,13 @@ SOCKET HTTPClient::Connect()
 {
     SOCKET sockfd = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
     if (sockfd == INVALID_SOCKET) {
+        LOG_ERROR("Socket creation failed, sockerr: {}", SYS_SOCKET_ERROR);
         return INVALID_SOCKET;
     }
 
     int ret = connect(sockfd, &_address, sizeof(_address));
     if (ret == SOCKET_ERROR) {
+        LOG_ERROR("Socket connection failed, sockerr: {}", SYS_SOCKET_ERROR);
         closesocket(sockfd);
         return INVALID_SOCKET;
     }
@@ -41,6 +43,7 @@ ECode HTTPClient::Send(SOCKET sockfd, const std::string& request)
     while (remaining_bytes) {
         sent_bytes = send(sockfd, &request[buf_idx], remaining_bytes, 0);
         if (sent_bytes == SOCKET_ERROR) {
+            LOG_ERROR("Socket send failed, sockerr: {}", SYS_SOCKET_ERROR);
             return ECode::SOCKET_SEND;
         }
 
@@ -61,6 +64,7 @@ ECode HTTPClient::Receive(SOCKET sockfd, HTTPResponse& response)
     while (1) {
         recv_bytes = recv(sockfd, buffer, sizeof(buffer) - 1, 0);
         if (recv_bytes == SOCKET_ERROR) {
+            LOG_ERROR("Socket receive failed, sockerr: {}", SYS_SOCKET_ERROR);
             return ECode::SOCKET_RECV;
         }
         if (recv_bytes == 0) {
