@@ -2,9 +2,10 @@
 
 #include <HTTP/Response.h>
 #include <HTTP/System.h>
-#include <HTTP/Map.h>
 
+#include <SMap.h>
 #include <Errors.h>
+
 #include <string>
 #include <unordered_map>
 
@@ -20,16 +21,16 @@ public:
 
 	ECode Request(
 		HTTPResponse& response, const std::string& method, const std::string& path,
-		const Map& query_params = Map(), const std::string& data = "", const std::string& content_type = "",
-		const Map& user_headers = Map(), const Map& user_cookies = Map());
+		const SMap& query_params = SMap(), const std::string& data = "", const std::string& content_type = "",
+		const SMap& user_headers = SMap(), const SMap& user_cookies = SMap());
 
-	ECode Get(HTTPResponse& response, const std::string& path, const Map& query_params = Map(),
-		const Map& user_headers = Map(), const Map& user_cookies = Map());
-	ECode Post(HTTPResponse& response, const std::string& path, const Map& query_params = Map(),
+	ECode Get(HTTPResponse& response, const std::string& path, const SMap& query_params = SMap(),
+		const SMap& user_headers = SMap(), const SMap& user_cookies = SMap());
+	ECode Post(HTTPResponse& response, const std::string& path, const SMap& query_params = SMap(),
 		const std::string& data = "", const std::string& content_type = "",
-		const Map& user_headers = Map(), const Map& user_cookies = Map());
-	ECode Delete(HTTPResponse& response, const std::string& path, const Map& query_params = Map(),
-		const Map& user_headers = Map(), const Map& user_cookies = Map());
+		const SMap& user_headers = SMap(), const SMap& user_cookies = SMap());
+	ECode Delete(HTTPResponse& response, const std::string& path, const SMap& query_params = SMap(),
+		const SMap& user_headers = SMap(), const SMap& user_cookies = SMap());
 
 	ECode ResolveHost();
 
@@ -40,8 +41,8 @@ private:
 	ECode Receive(SOCKET sockfd, HTTPResponse& response);
 
 	std::string FormatRequest(
-		const std::string& method, const std::string& path, const Map& query_params, const std::string& data,
-		const std::string& content_type, const Map& headers, const Map& cookies);
+		const std::string& method, const std::string& path, const SMap& query_params, const std::string& data,
+		const std::string& content_type, const SMap& headers, const SMap& cookies);
 
 	ECode ParseResponse(HTTPResponse& response);
 	void SetupSystemHeaders();
@@ -51,8 +52,8 @@ private:
 	int _port;
 	sockaddr _address;
 
-	Map _system_headers;
-	Map _system_cookies;
+	SMap _system_headers;
+	SMap _system_cookies;
 
 	static constexpr char HTTP_VERSION[] = "HTTP/1.1";
 };

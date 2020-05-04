@@ -75,37 +75,37 @@ ECode HTTPClient::Receive(SOCKET sockfd, HTTPResponse& response)
 }
 
 ECode HTTPClient::Get(
-    HTTPResponse& response, const std::string& path, const Map& query_params,
-    const Map& user_headers, const Map& user_cookies)
+    HTTPResponse& response, const std::string& path, const SMap& query_params,
+    const SMap& user_headers, const SMap& user_cookies)
 {
     return Request(response, "GET", path, query_params, "", "", user_headers, user_cookies);
 }
 
 ECode HTTPClient::Post(
-    HTTPResponse& response, const std::string& path, const Map& query_params,
+    HTTPResponse& response, const std::string& path, const SMap& query_params,
     const std::string& data, const std::string& content_type,
-    const Map& user_headers, const Map& user_cookies)
+    const SMap& user_headers, const SMap& user_cookies)
 {
     return Request(response, "POST", path, query_params, data, content_type, user_headers, user_cookies);
 }
 
 ECode HTTPClient::Delete(
-    HTTPResponse& response, const std::string& path, const Map& query_params,
-    const Map& user_headers, const Map& user_cookies)
+    HTTPResponse& response, const std::string& path, const SMap& query_params,
+    const SMap& user_headers, const SMap& user_cookies)
 {
     return Request(response, "DELETE", path, query_params, "", "", user_headers, user_cookies);
 }
 
 ECode HTTPClient::Request(
     HTTPResponse& response, const std::string& method, const std::string& path,
-    const Map& query_params, const std::string& data, const std::string& content_type,
-    const Map& user_headers, const Map& user_cookies)
+    const SMap& query_params, const std::string& data, const std::string& content_type,
+    const SMap& user_headers, const SMap& user_cookies)
 {
     ECode err;
     SOCKET sockfd;
     std::string request;
-    Map merged_headers = user_headers;
-    Map merged_cookies = user_cookies;
+    SMap merged_headers = user_headers;
+    SMap merged_cookies = user_cookies;
 
     merged_headers.insert(_system_headers.begin(), _system_headers.end());
     merged_cookies.insert(_system_cookies.begin(), _system_cookies.end());
@@ -143,8 +143,8 @@ ECode HTTPClient::Request(
 }
 
 std::string HTTPClient::FormatRequest(
-    const std::string& method, const std::string& path, const Map& query_params, const std::string& data,
-    const std::string& content_type, const Map& headers, const Map& cookies)
+    const std::string& method, const std::string& path, const SMap& query_params, const std::string& data,
+    const std::string& content_type, const SMap& headers, const SMap& cookies)
 {
     std::string request;
     std::string query_string;
@@ -218,10 +218,9 @@ ECode HTTPClient::ParseResponse(HTTPResponse& response)
                 else {
                     auto pos = line.find(':');
                     if (pos != std::string::npos) {
-                        std::string key = line.substr(0, pos);
+                        std::string key = Utils::ToLower(line.substr(0, pos));
                         std::string val = line.substr(pos + 2);
-                    
-                        std::transform(key.begin(), key.end(), key.begin(), ::tolower);
+
                         if (key != "set-cookie") {
                             response._headers[key] = val;
 

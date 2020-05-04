@@ -1,6 +1,7 @@
 #pragma once
 
 #include <HTTP/Client.h>
+#include <CmdProc.h>
 
 #include <Errors.h>
 
@@ -20,7 +21,12 @@ public:
 	ECode Shutdown();
 
 private:
-	HTTPClient client;
+	ECode RegisterCommands();
+	void CMD_Exit(const SMap& prompts);
+
+	bool _running;
+	HTTPClient _client;
+	CmdProc _cmd_proc;
 
 	static constexpr char SERVER_HOST[] = "ec2-3-8-116-10.eu-west-2.compute.amazonaws.com";
 	static constexpr int  SERVER_PORT   = 8080;

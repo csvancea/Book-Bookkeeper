@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\App.cpp" />
+    <ClCompile Include="src\CmdProc.cpp" />
     <ClCompile Include="src\Errors.cpp" />
     <ClCompile Include="src\HTTP\Client.cpp" />
     <ClCompile Include="src\HTTP\Response.cpp" />
@@ -29,6 +30,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\App.h" />
+    <ClInclude Include="include\CmdProc.h" />
     <ClInclude Include="include\Errors.h" />
     <ClInclude Include="include\fmt\chrono.h" />
     <ClInclude Include="include\fmt\color.h" />
@@ -43,7 +45,7 @@
     <ClInclude Include="include\fmt\printf.h" />
     <ClInclude Include="include\fmt\ranges.h" />
     <ClInclude Include="include\HTTP\Client.h" />
-    <ClInclude Include="include\HTTP\Map.h" />
+    <ClInclude Include="include\SMap.h" />
     <ClInclude Include="include\HTTP\Response.h" />
     <ClInclude Include="include\HTTP\System.h" />
     <ClInclude Include="include\Logger.h" />

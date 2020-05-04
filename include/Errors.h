@@ -14,7 +14,12 @@ enum class ECode
     SOCKET_CREATE,
     SOCKET_CONNECT,
     SOCKET_SEND,
-    SOCKET_RECV
+    SOCKET_RECV,
+
+    CMD_ALREADYREGISTERED,
+    CMD_NOTREGISTERED,
+    CMD_EMPTY,
+    CMD_UNKNOWN
 };
 
 std::ostream &operator<<(std::ostream& os, ECode ec);

@@ -1,4 +1,5 @@
 #include <Utils.h>
+#include <algorithm>
 
 namespace Utils
 {
@@ -16,5 +17,13 @@ namespace Utils
 
         res.push_back(str.substr(pos_start));
         return res;
+    }
+
+    std::string ToLower(const std::string& str)
+    {
+        std::string ret;
+        
+        std::transform(str.begin(), str.end(), std::back_inserter(ret), ::tolower);
+        return ret;
     }
 }

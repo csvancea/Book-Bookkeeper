@@ -1,6 +1,6 @@
 #pragma once
 
-#include <HTTP/Map.h>
+#include <SMap.h>
 
 class HTTPResponse
 {
@@ -12,8 +12,8 @@ public:
 	int GetCode() const;
 	const std::string& GetStatus() const;
 
-	const Map& GetHeaders() const;
-	const Map& GetCookies() const;
+	const SMap& GetHeaders() const;
+	const SMap& GetCookies() const;
 	const std::string& GetData() const;
 	const std::string& GetRaw() const;
 
@@ -24,8 +24,8 @@ private:
 	std::string _protover;
 
 	// headers
-	Map _headers;
-	Map _cookies;
+	SMap _headers;
+	SMap _cookies;
 
 	// data
 	std::string _data;

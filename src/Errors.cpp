@@ -1,18 +1,23 @@
 #include <Errors.h>
 
+#define CASE(code) case ECode::code: ret = #code; break;
 std::ostream &operator<<(std::ostream& os, ECode ec)
 {
     std::string ret;
 
     switch (ec) {
-    case ECode::OK: ret = "OK"; break;
-    case ECode::WSA_STARTUP: ret = "WSA_STARTUP"; break;
-    case ECode::HOST_ADDRINFO: ret = "HOST_ADDRINFO"; break;
-    case ECode::HOST_NORESULT: ret = "HOST_NORESULT"; break;
-    case ECode::SOCKET_CREATE: ret = "SOCKET_CREATE"; break;
-    case ECode::SOCKET_CONNECT: ret = "SOCKET_CONNECT"; break;
-    case ECode::SOCKET_SEND: ret = "SOCKET_SEND"; break;
-    case ECode::SOCKET_RECV: ret = "SOCKET_RECV"; break;
+    CASE(OK)
+    CASE(WSA_STARTUP)
+    CASE(HOST_ADDRINFO)
+    CASE(HOST_NORESULT)
+    CASE(SOCKET_CREATE)
+    CASE(SOCKET_CONNECT)
+    CASE(SOCKET_SEND)
+    CASE(SOCKET_RECV)
+    CASE(CMD_ALREADYREGISTERED)
+    CASE(CMD_NOTREGISTERED)
+    CASE(CMD_EMPTY)
+    CASE(CMD_UNKNOWN)
 
     default: ret = fmt::format("unknown error ({})", static_cast<int>(ec));      
     }

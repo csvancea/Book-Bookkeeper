@@ -20,12 +20,12 @@ const std::string& HTTPResponse::GetStatus() const
 	return _status;
 }
 
-const Map& HTTPResponse::GetHeaders() const
+const SMap& HTTPResponse::GetHeaders() const
 { 
 	return _headers;
 }
 
-const Map& HTTPResponse::GetCookies() const
+const SMap& HTTPResponse::GetCookies() const
 {
 	return _cookies;
 }
