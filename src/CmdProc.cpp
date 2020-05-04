@@ -36,15 +36,18 @@ ECode CmdProc::Unregister(const std::string& name)
 ECode CmdProc::ProcessNewCommand()
 {
 	std::string cmd_name;
+
+	std::cout << "> ";
 	std::getline(std::cin, cmd_name);
-	cmd_name = Utils::ToLower(cmd_name);
+	cmd_name = Utils::Trim(Utils::ToLower(cmd_name));
+	
 	if (cmd_name.length() == 0) {
 		return ECode::CMD_EMPTY;
 	}
 
 	auto cmd = _commands.find(cmd_name);
 	if (cmd == _commands.end()) {
-		LOG_WARNING("Invalid command: {}", cmd_name);
+		LOG_WARNING("Unknown command: {}", cmd_name);
 		return ECode::CMD_UNKNOWN;
 	}
 
