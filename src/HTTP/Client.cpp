@@ -197,6 +197,7 @@ std::string HTTPClient::FormatRequest(
     return request;
 }
 
+// ugly af
 ECode HTTPClient::ParseResponse(HTTPResponse& response)
 {
     enum {
@@ -213,7 +214,11 @@ ECode HTTPClient::ParseResponse(HTTPResponse& response)
         switch (state) {
             case STATUS: {
                 std::stringstream ss(line);
-                ss >> response._protover >> response._code >> response._status;
+                ss >> response._protover >> response._code;   
+                try {
+                    response._status = ss.str().substr(1 + ss.tellg());
+                }
+                catch (const std::out_of_range&) {}
 
                 state = HEADERS;
                 break;
