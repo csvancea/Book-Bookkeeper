@@ -260,6 +260,17 @@ void Application::CMD_Add_Book(SMap& prompts)
 	HTTPResponse response;
 	ECode err;
 
+	for (const auto& kv : prompts) {
+		if (kv.second.empty()) {
+			LOG_ERROR("Empty {}.", kv.first);
+			return;
+		}
+	}
+	if (std::atoi(prompts["page_count"].c_str()) < 1) {
+		LOG_ERROR("Invalid page_count.");
+		return;
+	}
+
 	err = _client.Post(response, "/api/v1/tema/library/books", SMap(), body.dump(), "application/json", _user_headers);
 	if (err != ECode::OK) {
 		LOG_ERROR("HTTP POST failed, errcode: {}", err);

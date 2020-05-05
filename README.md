@@ -55,10 +55,11 @@ Structura:
       - inregistreaza comenzile la procesorul de comenzi
     - contine functiile asociate comenzilor (eg: CMD_Login)
     - toate comenzile se comporta in general la fel:
-      1. se genereaza obiectul JSON pe baza parametrilor comenzii (daca e necesar)
-      2. se trimite cererea
-      3. se verifica daca a aparut vreo eroare la conectare/trimitere/primire/parsare
-      4. se verifica ce status code a dat serverul
+      1. se valideaza parametrii (daca e necesar)
+      2. se genereaza obiectul JSON pe baza parametrilor comenzii (daca e necesar)
+      3. se trimite cererea
+      4. se verifica daca a aparut vreo eroare la conectare/trimitere/primire/parsare
+      5. se verifica ce status code a dat serverul
          - daca e 2xx, se afiseaza raspunsul (ex: cartile de la get_books) si un mesaj
          de informare
          - daca nu e,  se citeste campul `error` din body (daca exista) si se afiseaza
