@@ -97,7 +97,6 @@ void Application::CMD_Register(SMap& prompts)
 
 		LOG_ERROR("Can't register!");
 		LOG_ERROR("Response: {} {} - {}", response.GetCode(), response.GetStatus(), error);
-		// LOG_DEBUG("Raw HTTP response:\n{}", response.GetRaw());
 		return;
 	}
 
@@ -132,7 +131,6 @@ void Application::CMD_Login(SMap& prompts)
 
 		LOG_ERROR("Can't log in!");
 		LOG_ERROR("Response: {} {} - {}", response.GetCode(), response.GetStatus(), error);
-		// LOG_DEBUG("Raw HTTP response:\n{}", response.GetRaw());
 		return;
 	}
 
@@ -161,7 +159,6 @@ void Application::CMD_Logout(SMap&)
 
 		LOG_ERROR("Can't log out!");
 		LOG_ERROR("Response: {} {} - {}", response.GetCode(), response.GetStatus(), error);
-		// LOG_DEBUG("Raw HTTP response:\n{}", response.GetRaw());
 		return;
 	}
 
@@ -196,7 +193,6 @@ void Application::CMD_Enter_Library(SMap&)
 
 		LOG_ERROR("Can't enter library!");
 		LOG_ERROR("Response: {} {} - {}", response.GetCode(), response.GetStatus(), error);
-		// LOG_DEBUG("Raw HTTP response:\n{}", response.GetRaw());
 		return;
 	}
 
@@ -225,7 +221,6 @@ void Application::CMD_Get_Books(SMap&)
 
 		LOG_ERROR("Can't retrieve books!");
 		LOG_ERROR("Response: {} {} - {}", response.GetCode(), response.GetStatus(), error);
-		// LOG_DEBUG("Raw HTTP response:\n{}", response.GetRaw());
 		return;
 	}
 
@@ -253,7 +248,6 @@ void Application::CMD_Get_Book(SMap& prompts)
 
 		LOG_ERROR("Can't retrieve book!");
 		LOG_ERROR("Response: {} {} - {}", response.GetCode(), response.GetStatus(), error);
-		// LOG_DEBUG("Raw HTTP response:\n{}", response.GetRaw());
 		return;
 	}
 
@@ -283,7 +277,6 @@ void Application::CMD_Add_Book(SMap& prompts)
 	
 		LOG_ERROR("Can't add book!");
 		LOG_ERROR("Response: {} {} - {}", response.GetCode(), response.GetStatus(), error);
-		// LOG_DEBUG("Raw HTTP response:\n{}", response.GetRaw());
 		return;
 	}
 
@@ -311,7 +304,6 @@ void Application::CMD_Delete_Book(SMap& prompts)
 
 		LOG_ERROR("Can't delete book!");
 		LOG_ERROR("Response: {} {} - {}", response.GetCode(), response.GetStatus(), error);
-		// LOG_DEBUG("Raw HTTP response:\n{}", response.GetRaw());
 		return;
 	}
 

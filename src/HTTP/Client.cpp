@@ -114,6 +114,7 @@ ECode HTTPClient::Request(
     merged_headers.insert(_system_headers.begin(), _system_headers.end());
     merged_cookies.insert(_system_cookies.begin(), _system_cookies.end());
     request = std::move(FormatRequest(method, path, query_params, data, content_type, merged_headers, merged_cookies));
+    LOG_DEBUG("Generated HTTP request:\n{}", request);
 
     sockfd = Connect();
     if (sockfd == INVALID_SOCKET) {
@@ -134,6 +135,7 @@ ECode HTTPClient::Request(
         Disconnect(sockfd);
         return err;
     }
+    LOG_DEBUG("Raw HTTP response:\n{}", response.GetRaw());
 
     // update cookies
     for (const auto kv : response.GetCookies()) {

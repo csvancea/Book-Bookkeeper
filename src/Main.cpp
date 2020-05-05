@@ -1,4 +1,3 @@
-#include <iostream>
 #include <Logger.h>
 #include <App.h>
 
@@ -9,7 +8,7 @@ int main()
 	Logger::GetInstance().SetOutputToFile(true, Logger::RULE_ALL, "dbg");
 	Logger::GetInstance().SetOutputToStdout(true, Logger::RULE_ALL);
 #else
-	Logger::GetInstance().SetOutputToStdout(true, Logger::RULE_MESSAGE | Logger::RULE_ERROR);
+	Logger::GetInstance().SetOutputToStdout(true, Logger::RULE_MESSAGE | Logger::RULE_ERROR | Logger::RULE_WARNING);
 #endif
 
 
